@@ -1,0 +1,93 @@
+Dataset: covid19,
+Model: GIN
+
+params={'seed': 41, 'epochs': 1000, 'batch_size': 50, 'init_lr': 0.0005, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0, 'print_epoch_interval': 5, 'max_time': 48}
+
+net_params={'device': device(type='cuda', index=0), 'gated': False, 'in_dim': 3, 'in_dim_edge': 1, 'residual': True, 'hidden_dim': 110, 'out_dim': 110, 'n_classes': 3, 'n_heads': -1, 'L': 4, 'readout': 'sum', 'graph_norm': True, 'batch_norm': True, 'in_feat_dropout': 0.0, 'dropout': 0.0, 'edge_feat': False, 'self_loop': False, 'pseudo_dim_MoNet': -1, 'kernel': -1, 'n_mlp_GIN': 2, 'learn_eps_GIN': True, 'neighbor_aggr_GIN': 'sum', 'sage_aggregator': 'meanpool', 'data_mode': 'default', 'gnn_per_block': -1, 'embedding_dim': -1, 'pool_ratio': -1, 'linkpred': True, 'num_pool': 1, 'cat': False, 'batch_size': 50, 'assign_dim': -7450, 'gpu_id': 0, 'total_param': 102429}
+
+GINNet(
+  (ginlayers): ModuleList(
+    (0): GINLayer(
+      (apply_func): ApplyNodeFunc(
+        (mlp): MLP(
+          (linears): ModuleList(
+            (0): Linear(in_features=110, out_features=110, bias=True)
+            (1): Linear(in_features=110, out_features=110, bias=True)
+          )
+          (batch_norms): ModuleList(
+            (0): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (bn): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (bn_node_h): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): GINLayer(
+      (apply_func): ApplyNodeFunc(
+        (mlp): MLP(
+          (linears): ModuleList(
+            (0): Linear(in_features=110, out_features=110, bias=True)
+            (1): Linear(in_features=110, out_features=110, bias=True)
+          )
+          (batch_norms): ModuleList(
+            (0): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (bn): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (bn_node_h): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): GINLayer(
+      (apply_func): ApplyNodeFunc(
+        (mlp): MLP(
+          (linears): ModuleList(
+            (0): Linear(in_features=110, out_features=110, bias=True)
+            (1): Linear(in_features=110, out_features=110, bias=True)
+          )
+          (batch_norms): ModuleList(
+            (0): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (bn): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (bn_node_h): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (3): GINLayer(
+      (apply_func): ApplyNodeFunc(
+        (mlp): MLP(
+          (linears): ModuleList(
+            (0): Linear(in_features=110, out_features=110, bias=True)
+            (1): Linear(in_features=110, out_features=110, bias=True)
+          )
+          (batch_norms): ModuleList(
+            (0): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (bn): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (bn_node_h): BatchNorm1d(110, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (embedding_h): Linear(in_features=3, out_features=110, bias=True)
+  (linears_prediction): ModuleList(
+    (0): Linear(in_features=110, out_features=3, bias=True)
+    (1): Linear(in_features=110, out_features=3, bias=True)
+    (2): Linear(in_features=110, out_features=3, bias=True)
+    (3): Linear(in_features=110, out_features=3, bias=True)
+    (4): Linear(in_features=110, out_features=3, bias=True)
+  )
+  (pool): SumPooling()
+)
+
+Total Parameters: 102429
+
+
+    FINAL RESULTS
+TEST ACCURACY: 76.5217
+TRAIN ACCURACY: 99.5814
+
+
+    Total Time Taken: 0.4877 hrs
+Average Time Per Epoch: 6.2673 s
+
+

@@ -1,0 +1,38 @@
+Dataset: DD,
+Model: GraphSage
+
+params={'seed': 41, 'epochs': 1000, 'batch_size': 50, 'init_lr': 5e-05, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0, 'print_epoch_interval': 5, 'max_time': 48}
+
+net_params={'device': device(type='cuda', index=0), 'gated': False, 'in_dim': 89, 'residual': True, 'hidden_dim': 108, 'out_dim': 108, 'n_classes': 2, 'n_heads': -1, 'L': 4, 'readout': 'mean', 'graph_norm': True, 'batch_norm': True, 'in_feat_dropout': 0.0, 'dropout': 0.0, 'edge_feat': False, 'self_loop': False, 'pseudo_dim_MoNet': -1, 'kernel': -1, 'n_mlp_GIN': -1, 'learn_eps_GIN': True, 'neighbor_aggr_GIN': 'sum', 'sage_aggregator': 'meanpool', 'data_mode': 'default', 'gnn_per_block': -1, 'embedding_dim': -1, 'pool_ratio': -1, 'linkpred': True, 'num_pool': 1, 'cat': False, 'batch_size': 50, 'assign_dim': -287400, 'gpu_id': 0, 'total_param': 111755}
+
+GraphSageNet(
+  (embedding_h): Linear(in_features=89, out_features=108, bias=True)
+  (in_feat_dropout): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): GraphSageLayer(in_channels=108, out_channels=108, aggregator=meanpool, residual=True)
+    (1): GraphSageLayer(in_channels=108, out_channels=108, aggregator=meanpool, residual=True)
+    (2): GraphSageLayer(in_channels=108, out_channels=108, aggregator=meanpool, residual=True)
+    (3): GraphSageLayer(in_channels=108, out_channels=108, aggregator=meanpool, residual=True)
+  )
+  (MLP_layer): MLPReadout(
+    (FC_layers): ModuleList(
+      (0): Linear(in_features=108, out_features=54, bias=True)
+      (1): Linear(in_features=54, out_features=27, bias=True)
+      (2): Linear(in_features=27, out_features=2, bias=True)
+    )
+  )
+)
+
+Total Parameters: 111755
+
+
+    FINAL RESULTS
+TEST ACCURACY averaged: 77.5073 with s.d. 2.6883
+TRAIN ACCURACY averaged: 92.0946 with s.d. 4.3394
+
+
+    Total Time Taken: 2.0768 hrs
+Average Time Per Epoch: 3.4468 s
+
+
+All Splits Test Accuracies: [0.7899159663865546, 0.7372881355932204, 0.788135593220339, 0.7372881355932204, 0.7711864406779662, 0.7372881355932204, 0.8135593220338984, 0.7863247863247863, 0.7863247863247863, 0.8034188034188035]

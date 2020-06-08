@@ -1,0 +1,38 @@
+Dataset: DD,
+Model: GCN
+
+params={'seed': 41, 'epochs': 1000, 'batch_size': 5, 'init_lr': 5e-05, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0, 'print_epoch_interval': 5, 'max_time': 48}
+
+net_params={'device': device(type='cuda', index=0), 'gated': False, 'in_dim': 89, 'residual': True, 'hidden_dim': 146, 'out_dim': 146, 'n_classes': 2, 'n_heads': -1, 'L': 4, 'readout': 'mean', 'graph_norm': True, 'batch_norm': True, 'in_feat_dropout': 0.0, 'dropout': 0.0, 'edge_feat': False, 'self_loop': False, 'pseudo_dim_MoNet': -1, 'kernel': -1, 'n_mlp_GIN': -1, 'learn_eps_GIN': True, 'neighbor_aggr_GIN': 'sum', 'sage_aggregator': 'meanpool', 'data_mode': 'default', 'gnn_per_block': -1, 'embedding_dim': -1, 'pool_ratio': -1, 'linkpred': True, 'num_pool': 1, 'cat': False, 'batch_size': 5, 'assign_dim': -28740, 'gpu_id': 0, 'total_param': 113625}
+
+GCNNet(
+  (embedding_h): Linear(in_features=89, out_features=146, bias=True)
+  (in_feat_dropout): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): GCNLayer(in_channels=146, out_channels=146, residual=True)
+    (1): GCNLayer(in_channels=146, out_channels=146, residual=True)
+    (2): GCNLayer(in_channels=146, out_channels=146, residual=True)
+    (3): GCNLayer(in_channels=146, out_channels=146, residual=True)
+  )
+  (MLP_layer): MLPReadout(
+    (FC_layers): ModuleList(
+      (0): Linear(in_features=146, out_features=73, bias=True)
+      (1): Linear(in_features=73, out_features=36, bias=True)
+      (2): Linear(in_features=36, out_features=2, bias=True)
+    )
+  )
+)
+
+Total Parameters: 113625
+
+
+    FINAL RESULTS
+TEST ACCURACY averaged: 76.5729 with s.d. 1.9502
+TRAIN ACCURACY averaged: 95.3090 with s.d. 0.7297
+
+
+    Total Time Taken: 4.7457 hrs
+Average Time Per Epoch: 9.2496 s
+
+
+All Splits Test Accuracies: [0.773109243697479, 0.7542372881355932, 0.7372881355932204, 0.7627118644067796, 0.7372881355932204, 0.7711864406779662, 0.788135593220339, 0.7948717948717948, 0.7863247863247863, 0.7521367521367521]
