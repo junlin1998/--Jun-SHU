@@ -5,3 +5,5 @@ covid19_150sp_test_superpixels.pkl filter=lfs diff=lfs merge=lfs -text
 covid19_150sp_train.pkl filter=lfs diff=lfs merge=lfs -text
 covid19_150sp_train_superpixels.pkl filter=lfs diff=lfs merge=lfs -text
 covid19_test.pkl filter=lfs diff=lfs merge=lfs -text
+test.pt filter=lfs diff=lfs merge=lfs -text
+train.pt filter=lfs diff=lfs merge=lfs -text
