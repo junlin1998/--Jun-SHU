@@ -1,0 +1,45 @@
+Dataset: covid19,
+Model: MLP
+
+params={'seed': 41, 'epochs': 1000, 'batch_size': 50, 'init_lr': 0.0005, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0, 'print_epoch_interval': 5, 'max_time': 48}
+
+net_params={'device': device(type='cuda', index=0), 'gated': True, 'in_dim': 3, 'in_dim_edge': 1, 'residual': True, 'hidden_dim': 150, 'out_dim': 150, 'n_classes': 3, 'n_heads': -1, 'L': 4, 'readout': 'sum', 'graph_norm': True, 'batch_norm': True, 'in_feat_dropout': 0.0, 'dropout': 0.0, 'edge_feat': False, 'self_loop': False, 'pseudo_dim_MoNet': -1, 'kernel': -1, 'n_mlp_GIN': -1, 'learn_eps_GIN': True, 'neighbor_aggr_GIN': 'sum', 'sage_aggregator': 'meanpool', 'data_mode': 'default', 'gnn_per_block': -1, 'embedding_dim': -1, 'pool_ratio': -1, 'linkpred': True, 'num_pool': 1, 'cat': False, 'batch_size': 50, 'assign_dim': -7450, 'gpu_id': 0, 'total_param': 105451}
+
+MLPNet(
+  (in_feat_dropout): Dropout(p=0.0, inplace=False)
+  (feat_mlp): Sequential(
+    (0): Linear(in_features=3, out_features=150, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.0, inplace=False)
+    (3): Linear(in_features=150, out_features=150, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.0, inplace=False)
+    (6): Linear(in_features=150, out_features=150, bias=True)
+    (7): ReLU()
+    (8): Dropout(p=0.0, inplace=False)
+    (9): Linear(in_features=150, out_features=150, bias=True)
+    (10): ReLU()
+    (11): Dropout(p=0.0, inplace=False)
+  )
+  (gates): Linear(in_features=150, out_features=150, bias=True)
+  (readout_mlp): MLPReadout(
+    (FC_layers): ModuleList(
+      (0): Linear(in_features=150, out_features=75, bias=True)
+      (1): Linear(in_features=75, out_features=37, bias=True)
+      (2): Linear(in_features=37, out_features=3, bias=True)
+    )
+  )
+)
+
+Total Parameters: 105451
+
+
+    FINAL RESULTS
+TEST ACCURACY: 75.2174
+TRAIN ACCURACY: 99.6861
+
+
+    Total Time Taken: 0.3523 hrs
+Average Time Per Epoch: 3.3458 s
+
+

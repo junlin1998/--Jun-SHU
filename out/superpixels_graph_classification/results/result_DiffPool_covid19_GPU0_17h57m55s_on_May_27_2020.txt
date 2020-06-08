@@ -1,0 +1,58 @@
+Dataset: covid19,
+Model: DiffPool
+
+params={'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.0005, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0, 'print_epoch_interval': 5, 'max_time': 48}
+
+net_params={'device': device(type='cuda', index=0), 'gated': False, 'in_dim': 3, 'in_dim_edge': 1, 'residual': True, 'hidden_dim': 32, 'out_dim': 32, 'n_classes': 3, 'n_heads': 8, 'L': 4, 'readout': 'sum', 'graph_norm': True, 'batch_norm': True, 'in_feat_dropout': 0.0, 'dropout': 0.0, 'edge_feat': False, 'self_loop': False, 'pseudo_dim_MoNet': -1, 'kernel': -1, 'n_mlp_GIN': -1, 'learn_eps_GIN': True, 'neighbor_aggr_GIN': 'sum', 'sage_aggregator': 'meanpool', 'data_mode': 'default', 'gnn_per_block': 3, 'embedding_dim': 32, 'pool_ratio': 0.15, 'linkpred': True, 'num_pool': 1, 'cat': False, 'batch_size': 128, 'assign_dim': 2816, 'gpu_id': 0, 'total_param': 203843}
+
+DiffPoolNet(
+  (embedding_h): Linear(in_features=3, out_features=32, bias=True)
+  (gc_before_pool): ModuleList(
+    (0): GraphSageLayer(in_channels=32, out_channels=32, aggregator=meanpool, residual=True)
+    (1): GraphSageLayer(in_channels=32, out_channels=32, aggregator=meanpool, residual=True)
+    (2): GraphSageLayer(in_channels=32, out_channels=32, aggregator=meanpool, residual=True)
+    (3): GraphSageLayer(in_channels=32, out_channels=32, aggregator=meanpool, residual=True)
+  )
+  (first_diffpool_layer): DiffPoolLayer(
+    (feat_gc): GraphSageLayer(in_channels=32, out_channels=32, aggregator=meanpool, residual=False)
+    (pool_gc): GraphSageLayer(in_channels=32, out_channels=2816, aggregator=meanpool, residual=False)
+    (reg_loss): ModuleList(
+      (0): EntropyLoss()
+    )
+  )
+  (gc_after_pool): ModuleList(
+    (0): ModuleList(
+      (0): BNDenseGraphSage(
+        (W): Linear(in_features=32, out_features=32, bias=True)
+        (bn): BatchNorm1d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): BNDenseGraphSage(
+        (W): Linear(in_features=32, out_features=32, bias=True)
+        (bn): BatchNorm1d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): BNDenseGraphSage(
+        (W): Linear(in_features=32, out_features=32, bias=True)
+        (bn): BatchNorm1d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (3): BNDenseGraphSage(
+        (W): Linear(in_features=32, out_features=32, bias=True)
+        (bn): BatchNorm1d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (diffpool_layers): ModuleList()
+  (pred_layer): Linear(in_features=32, out_features=3, bias=True)
+)
+
+Total Parameters: 203843
+
+
+    FINAL RESULTS
+TEST ACCURACY: 75.6250
+TRAIN ACCURACY: 99.9822
+
+
+    Total Time Taken: 2.9875 hrs
+Average Time Per Epoch: 39.2765 s
+
+
